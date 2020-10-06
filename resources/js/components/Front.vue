@@ -88,7 +88,9 @@
 
         methods: {
             loadCategories: function () {
-                axios.get('/api/categories')
+                axios.get('/api/categories', {
+                        params: _.omit(this.selected, 'categories')
+                    })
                     .then((response) => {
                         this.categories = response.data;
                         // console.log("this categories: " + JSON.stringify(this.categories));
@@ -99,7 +101,9 @@
             },
 
             loadProducts: function () {
-                axios.get('/api/products')
+                axios.get('/api/products', {
+                        params: this.selected
+                    })
                     .then((response) => {
                         this.products = response.data;
                         // console.log("this product: " + JSON.stringify(this.products));
@@ -111,7 +115,9 @@
             },
 
             loadManufacturers: function () {
-                axios.get('/api/manufacturers')
+                axios.get('/api/manufacturers', {
+                        params: _.omit(this.selected, 'manufacturers')
+                    })
                     .then((response) => {
                         this.manufacturers = response.data;
                         this.loading = false;
