@@ -14,4 +14,14 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    
+    public function scopeWithFilters($query)
+    {
+        return $query->when(count(request()->input('manufacturers', [])), function ($query) {
+                $query->whereIn('manufacturer_id', request()->input('manufacturers'));
+            })
+            ->when(count(request()->input('categories', [])), function ($query) {
+                $query->whereIn('category_id', request()->input('categories'));
+            });
+    }
 }

@@ -10,6 +10,10 @@ class CategoryController extends Controller
 {
    public function index()
     {
-        return Category::all();
+    	// return Category::all();
+        return $categories = Category::withCount(['products' => function ($query) {
+                $query->withFilters();
+            }])
+            ->get();
     }
 }

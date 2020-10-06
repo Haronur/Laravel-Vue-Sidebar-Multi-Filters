@@ -10,6 +10,10 @@ class ManufacturerController extends Controller
 {
    public function index()
     {
-        return Manufacturer::all();
+        // return Manufacturer::all();
+          return $manufacturers = Manufacturer::withCount(['products' => function ($query) {
+                $query->withFilters();
+            }])
+            ->get();
     }
 }

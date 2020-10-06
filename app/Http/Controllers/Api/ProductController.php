@@ -10,6 +10,7 @@ class ProductController extends Controller
 {
    public function index()
     {
-        return Product::all();
+        // return Product::all();
+        return $products = Product::withFilters()->get();
     }
 }
