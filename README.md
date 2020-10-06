@@ -75,9 +75,14 @@ php artisan make:controller Api/ManufacturerController
 php artisan make:controller Api/PriceController
 php artisan make:controller Api/ProductController
 
+# -- Maintain This Below Serial -- 
+
 php artisan make:migration create_categories_table --create=categories
-php artisan make:migration create_products_table --create=products
 php artisan make:migration create_manufacturers_table --create=manufacturers
+php artisan make:migration create_products_table --create=products
+
+- To avoid this error: `SQLSTATE[HY000]: General error: 1005 Can't create table `laravel-vue-sidebar-multi-filters`.`products` (errno: 150 "Foreign key constraint is incorrectly formed") (
+SQL: alter table `products` add constraint `products_manufacturer_id_foreign` foreign key (`manufacturer_id`) references `manufacturers` (`id`))`
 
 php artisan make:factory CategoryFactory --model=Category
 php artisan make:factory ManufacturerFactory --model=Manufacturer
@@ -88,7 +93,12 @@ php artisan make:seeder ManufacturerSeeder
 php artisan make:seeder ProductSeeder
 ``` 
 
-## -- Generate dummy data in Laravel 8 using Model Factory -- 
+## -- Generate dummy data in Laravel 8 using Model Factory (Important) -- 
+- To avoid this error:
+```
+ `SQLSTATE[HY000]: General error: 1005 Can't create table laravel-vue-sidebar-multi-filters`.`products` (errno: 150 "Foreign key constraint is incorrectly formed") (
+SQL: alter table `products` add constraint `products_manufacturer_id_foreign` foreign key (`manufacturer_id`) references `manufacturers` (`id`))`
+```
 - Run `php artisan migrate --seed` (it has some seeded data for your testing)
 
 
