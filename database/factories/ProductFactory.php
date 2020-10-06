@@ -22,7 +22,11 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            //
+        'name' => $this->faker->name,
+        'category_id' => \App\Models\Category::inRandomOrder()->first()->id,
+        'manufacturer_id' => \App\Models\Manufacturer::inRandomOrder()->first()->id,
+        'description' => $this->faker->paragraph,
+        'price' => rand(1000, 99999)
         ];
     }
 }

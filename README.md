@@ -87,3 +87,8 @@ php artisan make:seeder CategorySeeder
 php artisan make:seeder ManufacturerSeeder
 php artisan make:seeder ProductSeeder
 ``` 
+
+## -- Generate dummy data in Laravel 8 using Model Factory -- 
+- Run `php artisan migrate --seed` (it has some seeded data for your testing)
+
+

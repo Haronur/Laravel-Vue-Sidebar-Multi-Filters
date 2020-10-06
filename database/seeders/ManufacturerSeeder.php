@@ -13,6 +13,7 @@ class ManufacturerSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // factory(\App\Models\Manufacturer::class, 5)->create(); // < Laravel Verssion 8
+        \App\Models\Manufacturer::factory()->count(5)->create();
     }
 }
