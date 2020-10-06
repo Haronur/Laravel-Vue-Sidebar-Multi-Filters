@@ -102,3 +102,18 @@ SQL: alter table `products` add constraint `products_manufacturer_id_foreign` fo
 - Run `php artisan migrate --seed` (it has some seeded data for your testing)
 
 
+## -- Creating a Frontend Platform --
+- How to Install Vue.js using Laravel UI?
+
+- Install Vue
+  `php artisan ui vue`
+
+- Install Vue with auth
+  `php artisan ui vue --auth`
+
+- You also need to install npm and run it. so let's run both command:
+- Install NPM && Run NPM
+  `npm install && npm run dev`
+
+- Now you can work with your vue app.
+  Create `Home.blade.php` file manually in view Folder in root 
