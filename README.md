@@ -59,3 +59,31 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## Run Command to Create Some Files:
+
+- Run below command to create all files below
+
+```
+php artisan make:model Category
+php artisan make:model Manufacturer
+php artisan make:model Product
+
+php artisan make:controller Api/CategoryController
+php artisan make:controller Api/ManufacturerController
+php artisan make:controller Api/PriceController
+php artisan make:controller Api/ProductController
+
+php artisan make:migration create_categories_table --create=categories
+php artisan make:migration create_products_table --create=products
+php artisan make:migration create_manufacturers_table --create=manufacturers
+
+php artisan make:factory CategoryFactory --model=Category
+php artisan make:factory ManufacturerFactory --model=Manufacturer
+php artisan make:factory ProductFactory --model=Product
+
+php artisan make:seeder CategorySeeder
+php artisan make:seeder ManufacturerSeeder
+php artisan make:seeder ProductSeeder
+``` 
