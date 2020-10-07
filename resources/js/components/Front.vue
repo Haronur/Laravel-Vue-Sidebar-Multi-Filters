@@ -51,94 +51,48 @@
 </template>
 
 <script>
+    import {mapState, mapActions} from 'vuex';
     export default {
-        data: function () {
-            return {
-                prices: [],
-                categories: [],
-                manufacturers: [],
-                products: [],
-                loading: true,
-                selected: {
-                    prices: [],
-                    categories: [],
-                    manufacturers: []
+        mounted() {
+            this.loadData();
+        },
+        computed: {
+            ...mapState([
+                'products',
+                'loading',
+                'categories',
+                'manufacturers',
+                'prices'
+            ]),
+            selected: {
+                get () {
+                    return this.$store.state.selected;
+                },
+                set (value) {
+                    this.$store.commit('setSelected', value);
                 }
             }
         },
-
-        mounted() {
-            this.loadCategories();
-            this.loadManufacturers();
-            this.loadPrices();
-            this.loadProducts();
-        },
-
         watch: {
             selected: {
                 handler: function () {
-                    this.loadCategories();
-                    this.loadManufacturers();
-                    this.loadPrices();
-                    this.loadProducts();
+                    this.loadData();
                 },
                 deep: true
             }
         },
-
         methods: {
-            loadCategories: function () {
-                axios.get('/api/categories', {
-                        params: _.omit(this.selected, 'categories')
-                    })
-                    .then((response) => {
-                        this.categories = response.data;
-                        // console.log("this categories: " + JSON.stringify(this.categories));
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            },
-
-            loadProducts: function () {
-                axios.get('/api/products', {
-                        params: this.selected
-                    })
-                    .then((response) => {
-                        this.products = response.data;
-                        // console.log("this product: " + JSON.stringify(this.products));
-                        this.loading = false;
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            },
-
-            loadManufacturers: function () {
-                axios.get('/api/manufacturers', {
-                        params: _.omit(this.selected, 'manufacturers')
-                    })
-                    .then((response) => {
-                        this.manufacturers = response.data;
-                        this.loading = false;
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            },
-
-            loadPrices: function () {
-                axios.get('/api/prices', {
-                        params: _.omit(this.selected, 'prices')
-                    })
-                    .then((response) => {
-                        this.prices = response.data;
-                        console.log("this prices: " + JSON.stringify(this.prices));
-                        this.loading = false;
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+            ...mapActions([
+                'loadProducts',
+                'loadCategories',
+                'loadManufacturers',
+                'loadPrices'
+            ]),
+            loadData: function () {
+                this.loadCategories();
+                this.loadManufacturers();
+                this.loadPrices();
+                this.loadProducts();
             }
         }
     }
