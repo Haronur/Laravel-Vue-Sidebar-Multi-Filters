@@ -128,7 +128,9 @@
             },
 
             loadPrices: function () {
-                axios.get('/api/prices')
+                axios.get('/api/prices', {
+                        params: _.omit(this.selected, 'prices')
+                    })
                     .then((response) => {
                         this.prices = response.data;
                         console.log("this prices: " + JSON.stringify(this.prices));
