@@ -119,4 +119,4 @@ SQL: alter table `products` add constraint `products_manufacturer_id_foreign` fo
 
   Create `Home.blade.php` file manually in view Folder in root 
 
-## -- Creating a Frontend Platform --
+## -- Laravel Vue Sidebar Multi Filters 01 (Branch) --
