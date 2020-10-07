@@ -116,4 +116,7 @@ SQL: alter table `products` add constraint `products_manufacturer_id_foreign` fo
   `npm install && npm run dev`
 
 - Now you can work with your vue app.
+
   Create `Home.blade.php` file manually in view Folder in root 
+
+## -- Creating a Frontend Platform --
